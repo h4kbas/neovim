@@ -16,12 +16,19 @@ return {
           },
         },
       })
-      local builtin = require("telescope.builtin")
+
+      local builtin = require('telescope.builtin')
+      local action_state = require('telescope.actions.state')
+      local actions = require('telescope.actions')
+
+
       map("n", "<leader><leader>", builtin.oldfiles, {})
       map('n', '<leader>ff', builtin.find_files, {})
       map('n', '<leader>fg', builtin.live_grep, {})
       map('n', '<leader>fb', builtin.buffers, {})
       map('n', '<leader>fh', builtin.help_tags, {})
+      map('n', '<leader>fp', builtin.git_files, {})
+
 
       require("telescope").load_extension("ui-select")
     end,
