@@ -25,6 +25,7 @@ let s:Color3 = '#82AAFF'
 let s:Color8 = '#89DDFF'
 let s:Color10 = '#3E9689'
 let s:Color15 = '#4F384A'
+let s:Color17 = '#C0C7D4'
 
 call s:highlight('Comment', '', s:Color0, 'italic')
 call s:highlight('String', '', s:Color1, '')
@@ -32,7 +33,7 @@ call s:highlight('Number', '', s:Color2, '')
 call s:highlight('TSCharacter', '', s:Color3, '')
 call s:highlight('Identifier', '', s:Color4, '')
 call s:highlight('Keyword', '', s:Color5, '')
-call s:highlight('Type', '', s:Color5, '')
+call s:highlight('Type', '', s:Color17, '')
 call s:highlight('Function', '', s:Color3, '')
 call s:highlight('Error', s:Color6, s:Color7, '')
 call s:highlight('Operator', '', s:Color8, '')
