@@ -31,8 +31,14 @@ map("t", "<M-Right>", ":wincmd l<CR>")
 map('n', '<leader>h', ':nohlsearch<CR>')
 
 -- Save
-map('n', 'S', 's')
-map('n', 's', ':w<cr>')
+vim.keymap.set("n", "S", "s", { noremap = true })
+vim.keymap.set(
+  "n",
+  "s",
+  "<cmd>w|lua vim.defer_fn( function()vim.cmd('echom \"\"') end, 0)<CR>",
+  { noremap = false }
+)
+vim.keymap.set("n", "<leader>S", "<cmd>mksession! save.vim<CR>:wall|qa!<CR>")
 
 -- Move selected lines up/down in visual mode
 map("x", "K", ":move '<-2<CR>gv=gv")
@@ -56,3 +62,13 @@ map("n", "<M-S-j>", "yyp")
 map('n', '<leader>bd', ':bd<CR>')
 map('n', '<leader>bw', ':bw<CR>')
 map('n', '<leader>bn', ':enew<CR>')
+
+map("n", "<C-d>", "15j", { noremap = true })
+map("n", "<C-f>", "15k", { noremap = true })
+
+-- center after search
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+-- center after G
+map({ "n", "v" }, "G", "Gzz")
