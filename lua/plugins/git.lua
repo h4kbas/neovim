@@ -27,7 +27,7 @@ return {
         },
       })
 
-      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { blend = 90 })
+      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = "#665A65" })
 
       map('n', '<leader>hS', gitsigns.stage_buffer)
       map('n', '<leader>hU', gitsigns.reset_buffer_index)
