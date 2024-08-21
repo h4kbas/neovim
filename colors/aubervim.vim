@@ -14,6 +14,7 @@ let s:Color6 = '#ff2c83'
 let s:Color1 = '#C3E88D'
 let s:Color12 = '#f6f6f4'
 let s:Color13 = '#4C3949'
+let s:Color16 = '#625761'
 let s:Color14 = '#b9b9b9'
 let s:Color5 = '#c792ea'
 let s:Color9 = '#FFF'
@@ -42,7 +43,7 @@ call s:highlight('Pmenu', s:Color11, s:Color12, '')
 call s:highlight('PmenuSel', s:Color12, s:Color11, '')
 call s:highlight('PmenuThumb', s:Color11, s:Color12, '')
 call s:highlight('Normal', s:Color11, s:Color12, '')
-call s:highlight('Visual', s:Color13, '', '')
+call s:highlight('Visual', s:Color16, '', '')
 call s:highlight('CursorLine', s:Color13, '', '')
 call s:highlight('ColorColumn', s:Color13, '', '')
 call s:highlight('SignColumn', s:Color11, '', '')
@@ -77,7 +78,7 @@ highlight! link TSType Type
 highlight! link TSProperty TSField
 highlight! link TSConstBuiltin TSVariableBuiltin
 highlight! link TSTag MyTag
-highlight! link Folded Comment
+highlight! link Folded Identifier
 highlight! link TSComment Comment
 highlight! link TSPunctSpecial TSPunctDelimiter
 highlight! link TSNamespace TSType
