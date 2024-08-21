@@ -6,6 +6,7 @@ g.mapleader = " "
 g.background = "light"
 
 o.termguicolors = true
+o.cursorline = true
 
 o.swapfile = false
 g.nobackup = true
