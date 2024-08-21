@@ -10,12 +10,12 @@ return {
       gitsigns.setup({
         current_line_blame = true,
         signs = {
-          add          = { text = 'U' },                     -- Untracked file
-          change       = { text = 'M', guifg = 's:Color4' }, -- Modified file
-          delete       = { text = 'D' },                     -- Deleted file
-          topdelete    = { text = 'T' },                     -- Top deleted line
-          changedelete = { text = 'C' },                     -- Changed and deleted line
-          untracked    = { text = 'U' },                     -- Untracked file
+          add          = { text = 'U' },  -- Untracked file
+          change       = { text = 'M', }, -- Modified file
+          delete       = { text = 'D' },  -- Deleted file
+          topdelete    = { text = 'T' },  -- Top deleted line
+          changedelete = { text = 'C' },  -- Changed and deleted line
+          untracked    = { text = 'U' },  -- Untracked file
         },
         signs_staged = {
           add          = { text = 'S' }, -- Staged add
@@ -30,7 +30,7 @@ return {
       vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = "#665A65" })
 
       map('n', '<leader>hS', gitsigns.stage_buffer)
-      map('n', '<leader>hU', gitsigns.reset_buffer_index)
+      map('n', '<leader>hU', gitsigns.reset_buffer)
 
       map({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk)
       map({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk)
@@ -44,8 +44,8 @@ return {
       -- map("n", "<leader>ht", gitsigns.toggle_current_line_blame)
 
       map("n", '<leader>hv', gitsigns.select_hunk)
-      map("n", ']h', gitsigns.next_hunk)
-      map("n", '[h', gitsigns.prev_hunk)
+      map("n", 'h]', gitsigns.next_hunk)
+      map("n", 'h[', gitsigns.prev_hunk)
     end
   }
 }
