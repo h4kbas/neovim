@@ -45,9 +45,12 @@ o.foldlevelstart = 99
 o.foldclose = 'all'
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
-o.foldtext = ""
+function _G.MyFoldText()
+  return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
+end
 
-
+vim.opt.fillchars:append({ fold = " " })
+vim.opt.foldtext = 'v:lua.MyFoldText()'
 
 -- Format on save
 vim.api.nvim_create_augroup('AutoFormatting', {})
