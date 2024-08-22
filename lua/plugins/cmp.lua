@@ -7,6 +7,7 @@ return {
       local kind_icons = {
         -- gray
         Text = "  ",
+        Copilot = "  ",
 
         -- blue
         Method = " 󰆧 ",
@@ -46,6 +47,7 @@ return {
       cmp.setup({
         sources = {
           -- { name = "calc" },
+          { name = "copilot", },
           { name = "nvim_lsp" },
           -- { name = "luasnip" },
         },
@@ -107,6 +109,7 @@ return {
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
 
             local source_names = {
+              copilot = "[CPilot]",
               nvim_lsp = "[LSP]",
               nvim_lua = "[Lua]",
               luasnip = "[Snippet]",
