@@ -8,7 +8,7 @@ return {
           replacement = "",
           filesFilter = "",
           flags = "",
-          paths = "./src/",
+          paths = "./",
         },
       })
     end,

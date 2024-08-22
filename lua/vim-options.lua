@@ -1,6 +1,10 @@
 local o = vim.opt
 local g = vim.g
 
+-- Set workdir to path
+local p = vim.fn.expand("%:p:h")
+vim.cmd("cd /" .. string.gsub(p, "oil:///", ""))
+
 -- General
 g.mapleader = " "
 g.background = "light"
