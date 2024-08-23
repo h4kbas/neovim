@@ -33,8 +33,14 @@ return {
 
       lsp.lua_ls.setup({
         capabilities = cap,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          }
+        }
       })
-
       lsp.sqlls.setup({
         capabilities = cap,
       })
