@@ -10,9 +10,6 @@ return {
         Vnatural_order = true,
       },
       watch_for_changes = false,
-      win_options = {
-        signcolumn = "yes:2",
-      },
     })
     vim.keymap.set("n", "-", oil.toggle_float, {})
   end,

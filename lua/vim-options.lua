@@ -16,10 +16,24 @@ o.swapfile = false
 g.nobackup = true
 g.nowritebackup = true
 
+-- Session
+o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+
+-- Permanaent undo
+o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+o.undofile = true
+
 -- Enconding
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
 o.fileencodings = 'utf-8'
+
+o.pumheight = 12
+o.signcolumn = 'yes:1'
+
+-- Split
+o.splitbelow = true
+o.splitright = true
 
 -- Theme
 vim.cmd("colorscheme aubervim")
@@ -53,5 +67,5 @@ function _G.MyFoldText()
   return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
 end
 
-vim.opt.fillchars:append({ fold = " " })
-vim.opt.foldtext = 'v:lua.MyFoldText()'
+o.fillchars:append({ fold = " " })
+o.foldtext = 'v:lua.MyFoldText()'

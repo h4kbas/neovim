@@ -7,7 +7,6 @@ return {
       local kind_icons = {
         -- gray
         Text = "  ",
-        Copilot = "  ",
 
         -- blue
         Method = " 󰆧 ",
@@ -46,10 +45,7 @@ return {
       }
       cmp.setup({
         sources = {
-          -- { name = "calc" },
-          { name = "copilot", },
           { name = "nvim_lsp" },
-          -- { name = "luasnip" },
         },
         snippet = {
           expand = function(args)
@@ -57,16 +53,31 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
           ["<C-f>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
           ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-k>"] = cmp.mapping({
+            i = function()
+              if cmp.visible() then
+                cmp.abort()
+              else
+                cmp.complete()
+              end
+            end,
+            c = function()
+              if cmp.visible() then
+                cmp.close()
+              else
+                cmp.complete()
+              end
+            end,
+          }),
         }),
         enabled = function()
           local context = require("cmp.config.context")
@@ -94,14 +105,7 @@ return {
               end
               if source_name == "tsserver" then
                 return completion.detail
-              elseif source_name == "pyright" or source_name == "vtsls" then
-                if completion.labelDetails ~= nil then
-                  return completion.labelDetails.description
-                end
               elseif source_name == "gopls" then
-                -- And this, for the record, is how I inspect payloads
-                -- require("ditsuke.utils").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
-                -- require("ditsuke.utils").logger("completion detail added to gopls")
                 return completion.detail
               end
             end
@@ -109,14 +113,11 @@ return {
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
 
             local source_names = {
-              copilot = "[CPilot]",
               nvim_lsp = "[LSP]",
               nvim_lua = "[Lua]",
-              luasnip = "[Snippet]",
               buffer = "[Buffer]",
               path = "[Path]",
               latex_symbols = "[LaTeX]",
-              calc = "[Calc]",
             }
 
             -- Assign a default source name if not already set
@@ -131,13 +132,12 @@ return {
             return vim_item
           end,
           window = {
-            -- completion = cmp.config.window.bordered(),
             documentation = cmp.config.window.bordered(),
           },
         },
         cmp.setup.filetype({ "sql" }, {
           sources = {
-            -- { name = "vim-dadbod-completion" },
+            { name = "nvim_lsp" },
             { name = "cmp-dbee" },
             { name = "buffer" },
           },
@@ -145,7 +145,4 @@ return {
       })
     end
   },
-  { "hrsh7th/cmp-calc" },
-  { "neovim/nvim-lspconfig" },
-  { "hrsh7th/cmp-nvim-lsp" },
 }
