@@ -11,23 +11,20 @@ local colors = {
   Color8 = '#89DDFF',
   Color9 = '#FFFFFF',
   Color10 = '#3E9689',
-  Color11 = '#3E313C',
+  Color11 = '#3C323C',
   Color12 = '#f6f6f4',
   Color13 = '#4C3949',
   Color14 = '#b9b9b9',
   Color15 = '#4F384A',
   Color16 = '#625761',
   Color17 = '#C0C7D4',
+  Color18 = '#4C3949',
 
-  add_bg = "#144620",        -- diffEditor.insertedTextBackground
-  add_border = "#007100",    -- diffEditor.insertedTextBorder
-  remove_bg = "#632323",     -- diffEditor.removedTextBackground
-  remove_border = "#7A2F2F", -- diffEditor.removedTextBorder
+  add_bg = "#616546",        -- diffEditor.insertedTextBackground
+  add_border = "#504D44",    -- diffEditor.insertedTextBorder
+  remove_bg = "#7B3233",     -- diffEditor.removedTextBackground
+  remove_border = "#5F3237", -- diffEditor.removedTextBorder
   -- modify_bg = "#1B1C24",     -- diffEditor.modifiedTextBackground (VS Code doesn't use this directly, so we can adjust or skip this if needed)
-  add_gutter = "#2EA043",    -- editorGutter.addedBackground
-  remove_gutter = "#D73A49", -- editorGutter.deletedBackground
-  modify_gutter = "#FF7518", -- editorGutter.modifiedBackground
-
   add_fg = "#2EA043",        -- editorGutter.addedBackground
   change_fg = "#FF7518",     -- editorGutter.modifiedBackground
   delete_fg = "#D73A49",     -- editorGutter.deletedBackground
@@ -44,6 +41,7 @@ vim.api.nvim_set_hl(0, 'Float', { fg = colors.Color2 })
 
 vim.api.nvim_set_hl(0, 'Function', { fg = colors.Color3 })
 vim.api.nvim_set_hl(0, 'Macro', { fg = colors.Color3 })
+vim.api.nvim_set_hl(0, 'Directory', { fg = colors.Color3 })
 
 vim.api.nvim_set_hl(0, 'Identifier', { fg = colors.Color4 })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = colors.Color4 })
@@ -54,20 +52,19 @@ vim.api.nvim_set_hl(0, 'Operator', { fg = colors.Color5 })
 
 vim.api.nvim_set_hl(0, 'Error', { fg = colors.Color7, bg = colors.Color6 })
 
-vim.api.nvim_set_hl(0, 'Operator', { fg = colors.Color8 })
 vim.api.nvim_set_hl(0, 'Conditional', { fg = colors.Color8 })
 vim.api.nvim_set_hl(0, 'Repeat', { fg = colors.Color8 })
 
 vim.api.nvim_set_hl(0, 'StatusLine', { fg = colors.Color10, bg = '#508A7F' })
 vim.api.nvim_set_hl(0, 'TabLineSel', { fg = colors.Color11, bg = '#508A7F' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'WildMenu', { fg = colors.Color12, bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'Pmenu', { fg = colors.Color12, bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'NormalFloat', { fg = colors.Color12, bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'PmenuSel', { fg = colors.Color11, bg = colors.Color12 })
-vim.api.nvim_set_hl(0, 'PmenuThumb', { fg = colors.Color12, bg = colors.Color11 })
+vim.api.nvim_set_hl(0, 'WildMenu', { fg = colors.Color12, bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'Pmenu', { fg = colors.Color12, bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'NormalFloat', { fg = colors.Color12, bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'PmenuSel', { fg = colors.Color18, bg = colors.Color12 })
+vim.api.nvim_set_hl(0, 'PmenuThumb', { fg = colors.Color12, bg = colors.Color18 })
 vim.api.nvim_set_hl(0, 'Normal', { fg = colors.Color12, bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'TelescopeNormal', { fg = colors.Color12, bg = colors.Color11 })
+vim.api.nvim_set_hl(0, 'TelescopeNormal', { fg = colors.Color12, bg = colors.Color18 })
 
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = colors.Color13 })
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = colors.Color13 })
