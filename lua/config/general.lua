@@ -57,6 +57,3 @@ o.softtabstop = 2
 o.shiftwidth = 2
 
 o.laststatus = 2
-
--- Theme
-vim.cmd("colorscheme aubervim")

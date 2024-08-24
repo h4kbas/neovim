@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
+require("config.colors")
 require("config.general")
 require("lazy-init")
 require("config.bindings")
