@@ -9,17 +9,7 @@ return {
       local cap = require("cmp_nvim_lsp").default_capabilities()
       local lsp_attach = function(args)
         local opts = { buffer = args.buf }
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
-        vim.keymap.set('n', 'gi', builtin.lsp_implementations, opts)
-        vim.keymap.set('n', 'gr', builtin.lsp_references, opts)
-        vim.keymap.set('n', 'go', builtin.lsp_type_definitions, opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        -- vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        require("config.bindings").Custom_lsp_actions(opts)
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {

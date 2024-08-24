@@ -114,6 +114,19 @@ function M.Custom_cmp_actions(cmp_select)
   }
 end
 
+function M.Custom_lsp_actions(opts)
+  local builtin = require('telescope.builtin')
+  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+  map('n', 'gd', builtin.lsp_definitions, opts)
+  map('n', 'gi', builtin.lsp_implementations, opts)
+  map('n', 'gr', builtin.lsp_references, opts)
+  map('n', 'go', builtin.lsp_type_definitions, opts)
+  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+  map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+  map('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+end
+
 -- Git
 local gitsigns = require("gitsigns")
 map('n', '<leader>hS', gitsigns.stage_buffer)
