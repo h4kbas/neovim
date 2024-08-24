@@ -52,33 +52,7 @@ return {
             vim.snippet.expand(args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-          ["<C-f>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-d>"] = cmp.mapping.scroll_docs(4),
-
-          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-
-          ["<C-k>"] = cmp.mapping({
-            i = function()
-              if cmp.visible() then
-                cmp.abort()
-              else
-                cmp.complete()
-              end
-            end,
-            c = function()
-              if cmp.visible() then
-                cmp.close()
-              else
-                cmp.complete()
-              end
-            end,
-          }),
-        }),
+        mapping = cmp.mapping.preset.insert(require("config.bindings").Custom_cmp_actions(cmp_select)),
         enabled = function()
           local context = require("cmp.config.context")
 

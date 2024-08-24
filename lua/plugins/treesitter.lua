@@ -11,12 +11,7 @@ return {
         fold = { enable = true },
         incremental_selection = {
           enable = true,
-          keymaps = {
-            init_selection = "<C-e>",
-            node_incremental = "<C-e>",
-            scope_incremental = false,
-            node_decremental = "<C-s>",
-          },
+          keymaps = require("config.bindings").Custom_treesitter_mapping
         },
       })
     end

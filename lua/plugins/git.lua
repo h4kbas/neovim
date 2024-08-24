@@ -37,24 +37,6 @@ return {
       })
 
       vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = "#665A65" })
-
-      map('n', '<leader>hS', gitsigns.stage_buffer)
-      map('n', '<leader>hU', gitsigns.reset_buffer)
-
-      map({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk)
-      map({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk)
-      map('n', '<leader>hu', gitsigns.undo_stage_hunk)
-
-      map('n', '<leader>hd', gitsigns.diffthis)
-      map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
-
-      map("n", "<leader>hp", gitsigns.preview_hunk)
-      map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end)
-      -- map("n", "<leader>ht", gitsigns.toggle_current_line_blame)
-
-      map("n", '<leader>hv', gitsigns.select_hunk)
-      map("n", 'h]', gitsigns.next_hunk)
-      map("n", 'h[', gitsigns.prev_hunk)
     end
   }
 }

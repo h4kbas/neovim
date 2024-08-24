@@ -11,6 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("vim-options")
-require("vim-bindings")
+
+require("config.general")
 require("lazy-init")
+require("config.bindings")
+require("config.errors")
+require("config.folding")
+require("config.quickfix")
