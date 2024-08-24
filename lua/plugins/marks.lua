@@ -10,7 +10,7 @@ return {
         force_write_shada = false,
         refresh_interval = 250,
         -- default 10.
-        sign_priority = { lower = 2, upper = 3, builtin = 1, bookmark = 4 },
+        sign_priority = { lower = 3, upper = 4, builtin = 2, bookmark = 5 },
         excluded_filetypes = {},
         excluded_buftypes = {
           "nofile",

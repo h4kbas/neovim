@@ -14,10 +14,13 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      local map = vim.keymap.set
       local gitsigns = require("gitsigns")
       gitsigns.setup({
+        sign_priority = 1,
         current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 500,
+        },
         signs = {
           add          = { text = 'U' },  -- Untracked file
           change       = { text = 'M', }, -- Modified file
@@ -35,8 +38,6 @@ return {
           untracked    = { text = 'U' }, -- Staged untracked
         },
       })
-
-      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = "#665A65" })
     end
   }
 }
