@@ -50,29 +50,29 @@ vim.api.nvim_set_hl(0, 'Folded', { fg = colors.Color4 })
 vim.api.nvim_set_hl(0, 'Keyword', { fg = colors.Color5 })
 vim.api.nvim_set_hl(0, 'Operator', { fg = colors.Color5 })
 
-vim.api.nvim_set_hl(0, 'Error', { fg = colors.Color7, bg = colors.Color6 })
+vim.api.nvim_set_hl(0, 'Error', { bg = colors.Color6 })
 
 vim.api.nvim_set_hl(0, 'Conditional', { fg = colors.Color8 })
 vim.api.nvim_set_hl(0, 'Repeat', { fg = colors.Color8 })
 
-vim.api.nvim_set_hl(0, 'StatusLine', { fg = colors.Color10, bg = '#508A7F' })
-vim.api.nvim_set_hl(0, 'TabLineSel', { fg = colors.Color11, bg = '#508A7F' })
+vim.api.nvim_set_hl(0, 'StatusLine', { bg = '#508A7F' })
+vim.api.nvim_set_hl(0, 'TabLineSel', { bg = '#508A7F' })
 vim.api.nvim_set_hl(0, 'SignColumn', { bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'WildMenu', { fg = colors.Color12, bg = colors.Color18 })
-vim.api.nvim_set_hl(0, 'Pmenu', { fg = colors.Color12, bg = colors.Color18 })
-vim.api.nvim_set_hl(0, 'NormalFloat', { fg = colors.Color12, bg = colors.Color18 })
-vim.api.nvim_set_hl(0, 'PmenuSel', { fg = colors.Color18, bg = colors.Color12 })
-vim.api.nvim_set_hl(0, 'PmenuThumb', { fg = colors.Color12, bg = colors.Color18 })
-vim.api.nvim_set_hl(0, 'Normal', { fg = colors.Color12, bg = colors.Color11 })
-vim.api.nvim_set_hl(0, 'TelescopeNormal', { fg = colors.Color12, bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'WildMenu', { bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'Pmenu', { bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'PmenuSel', { bg = colors.Color12 })
+vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = colors.Color18 })
+vim.api.nvim_set_hl(0, 'Normal', { bg = colors.Color11 })
+vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = colors.Color18 })
 
 vim.api.nvim_set_hl(0, 'CursorLine', { bg = colors.Color13 })
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = colors.Color13 })
 
 vim.api.nvim_set_hl(0, 'LineNr', { fg = colors.Color14 })
 
-vim.api.nvim_set_hl(0, 'TabLine', { fg = colors.Color14, bg = colors.Color15 })
-vim.api.nvim_set_hl(0, 'TabLineFill', { fg = colors.Color14, bg = colors.Color15 })
+vim.api.nvim_set_hl(0, 'TabLine', { bg = colors.Color15 })
+vim.api.nvim_set_hl(0, 'TabLineFill', { bg = colors.Color15 })
 
 vim.api.nvim_set_hl(0, 'Visual', { bg = colors.Color16 })
 
@@ -87,9 +87,9 @@ vim.api.nvim_set_hl(0, "DiffChange", { bg = colors.modify_bg })
 vim.api.nvim_set_hl(0, "DiffDelete", { bg = colors.remove_bg })
 vim.api.nvim_set_hl(0, "DiffText", { bg = colors.modify_bg })
 
-vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = "#043927" })    -- Inline addition background color
-vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "#35330D" }) -- Inline change background color
-vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = "#5A1E22" }) --
+vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = colors.add_bg })       -- Inline addition background color
+vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = colors.change_fg }) -- Inline change background color
+vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = colors.delete_fg }) --
 
 -- Gitsigns highlight groups
 -- Define the highlight groups for Gitsigns
@@ -109,4 +109,8 @@ vim.api.nvim_set_hl(0, "NeogitDiffAdd", { bg = colors.add_bg })
 vim.api.nvim_set_hl(0, "NeogitDiffDelete", { bg = colors.remove_bg })
 vim.api.nvim_set_hl(0, "NeogitDiffContext", { bg = colors.modify_bg })
 
-vim.api.nvim_set_hl(0, "CustomMarkHighlight", { bg = "#8B008B", fg = "#FFFFFF" })
+
+vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { bg = colors.add_bg })
+vim.api.nvim_set_hl(0, "DiffviewDiffChange", { bg = colors.add_bg })
+vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { bg = colors.delete_bg })
+vim.api.nvim_set_hl(0, "DiffviewDiffText", { bg = colors.modify_bg })
