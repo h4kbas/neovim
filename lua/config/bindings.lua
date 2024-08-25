@@ -212,4 +212,13 @@ M.Custom_trouble_bindings = {
   },
 }
 
+-- ## Marks ##
+M.Custom_marks_mappings = {
+  set = "m",
+  delete = "dm",
+  delete_buf = "dm-",
+  next = "]m",
+  prev = "[m",
+}
+
 return M
