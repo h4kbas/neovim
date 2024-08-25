@@ -51,8 +51,11 @@ M.Custom_treesitter_mapping = {
 }
 
 -- ## Oil ##
-local oil = require("oil")
-map("n", "§", oil.toggle_float, {})
+--
+vim.defer_fn(function()
+  local oil = require("oil")
+  map("n", "§", oil.toggle_float)
+end, 300)
 
 M.Custom_oil_mappings = {
   ["g?"] = "actions.show_help",
@@ -64,7 +67,7 @@ M.Custom_oil_mappings = {
   ["<C-c>"] = "actions.close",
   ["<C-l>"] = "actions.refresh",
   ["§"] = "actions.parent",
-  ["_"] = "actions.open_cwd",
+  ["±"] = "actions.open_cwd",
   ["`"] = "actions.cd",
   ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
   ["gs"] = "actions.change_sort",
@@ -160,23 +163,25 @@ function M.Custom_lsp_actions(opts)
 end
 
 -- Git
-local gitsigns = require("gitsigns")
-map('n', '<leader>hS', gitsigns.stage_buffer)
-map('n', '<leader>hU', gitsigns.reset_buffer)
+vim.defer_fn(function()
+  local gitsigns = require("gitsigns")
+  map('n', '<leader>hS', gitsigns.stage_buffer)
+  map('n', '<leader>hU', gitsigns.reset_buffer)
 
-map({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk)
-map({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk)
-map('n', '<leader>hu', gitsigns.undo_stage_hunk)
+  map({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk)
+  map({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk)
+  map('n', '<leader>hu', gitsigns.undo_stage_hunk)
 
-map('n', '<leader>hd', gitsigns.diffthis)
-map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+  map('n', '<leader>hd', gitsigns.diffthis)
+  map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
 
-map("n", "<leader>hp", gitsigns.preview_hunk)
-map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end)
+  map("n", "<leader>hp", gitsigns.preview_hunk)
+  map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end)
 
-map("n", '<leader>hv', gitsigns.select_hunk)
-map("n", ']h', gitsigns.next_hunk)
-map("n", '[h', gitsigns.prev_hunk)
+  map("n", '<leader>hv', gitsigns.select_hunk)
+  map("n", ']h', gitsigns.next_hunk)
+  map("n", '[h', gitsigns.prev_hunk)
+end, 300)
 
 -- Trouble
 M.Custom_trouble_bindings = {
@@ -220,5 +225,63 @@ M.Custom_marks_mappings = {
   next = "]m",
   prev = "[m",
 }
+
+-- ## DAP ##
+M.Custom_dap_mappings = {
+  {
+    "<leader>db",
+    function()
+      require('dap').toggle_breakpoint()
+    end,
+    desc = "Toggle Breakpoint",
+  },
+  {
+    "<leader>dC",
+    function()
+      require('dap').clear_breakpoints()
+    end,
+    desc = "Clear Breakpoints",
+  },
+  {
+    "<leader>dl",
+    function()
+      require('dap').list_breakpoints()
+    end,
+    desc = "List Breakpoints",
+  },
+  {
+    "<leader>do",
+    function()
+      require("dap").step_over()
+    end,
+    desc = "Step Over",
+  },
+  {
+    "<leader>di",
+    function()
+      require("dap").step_into()
+    end,
+    desc = "Step Into",
+  },
+  {
+    "<leader>dI",
+    function()
+      require("dap").step_out()
+    end,
+    desc = "Step Out",
+  },
+  {
+    "<leader>da",
+    function()
+      if vim.fn.filereadable(".vscode/launch.json") then
+        local dap_vscode = require("dap.ext.vscode")
+        dap_vscode.load_launchjs(nil, {
+        })
+      end
+      require("dap").continue()
+    end,
+  },
+}
+
 
 return M
