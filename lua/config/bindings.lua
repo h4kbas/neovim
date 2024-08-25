@@ -124,9 +124,9 @@ function M.Custom_lsp_actions(opts)
   map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
   map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
   map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  map('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  map('n', '<C-f>', '<cmd>lua vim.lsp.util.scroll(-4)<CR>', opts)
-  map('n', '<C-d>', '<cmd>lua vim.lsp.util.scroll(4)<CR>', opts)
+  map("n", "]g", vim.diagnostic.goto_next)
+  map("n", "[g", vim.diagnostic.goto_prev)
+  map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end
 
 -- Git

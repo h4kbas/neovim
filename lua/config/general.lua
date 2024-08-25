@@ -3,6 +3,7 @@ _G.map = vim.keymap.set
 _G.o = vim.opt
 _G.g = vim.g
 
+o.shortmess:append("c")
 -- Set workdir to path
 local p = vim.fn.expand("%:p:h")
 vim.cmd("cd /" .. string.gsub(p, "oil:///", ""))
