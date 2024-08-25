@@ -19,7 +19,7 @@ map("n", "<leader>q", "<cmd>mksession! save.vim<CR>:wall|qa!<CR>")
 map('n', '<leader>bd', '<cmd>bd!<CR>')
 map('n', '<leader>bw', '<cmd>bw<CR>')
 map('n', '<leader>bn', '<cmd>enew<CR>')
--- Navigation
+-- Windows
 map('n', '<c-k>', '<cmd>wincmd k<CR>')
 map('n', '<c-j>', '<cmd>wincmd j<CR>')
 map('n', '<c-h>', '<cmd>wincmd h<CR>')
@@ -29,6 +29,11 @@ map("t", "<M-k>", "<cmd>wincmd k<CR>")
 map("t", "<M-j>", "<cmd>wincmd j<CR>")
 map("t", "<M-h>", "<cmd>wincmd h<CR>")
 map("t", "<M-l>", "<cmd>wincmd l<CR>")
+
+map("n", "=", [[<cmd>vertical resize +5<cr>]])   -- make the window biger vertically
+map("n", "-", [[<cmd>vertical resize -5<cr>]])   -- make the window smaller vertically
+map("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
+map("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
 -- Adjustments
 -- center after G
 map({ "n", "v" }, "G", "Gzz")
@@ -43,6 +48,29 @@ M.Custom_treesitter_mapping = {
   node_incremental = "<C-e>",
   scope_incremental = false,
   node_decremental = "<C-s>",
+}
+
+-- ## Oil ##
+local oil = require("oil")
+map("n", "§", oil.toggle_float, {})
+
+M.Custom_oil_mappings = {
+  ["g?"] = "actions.show_help",
+  ["<CR>"] = "actions.select",
+  ["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+  ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+  ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+  ["<C-p>"] = "actions.preview",
+  ["<C-c>"] = "actions.close",
+  ["<C-l>"] = "actions.refresh",
+  ["§"] = "actions.parent",
+  ["_"] = "actions.open_cwd",
+  ["`"] = "actions.cd",
+  ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
+  ["gs"] = "actions.change_sort",
+  ["gx"] = "actions.open_external",
+  ["g."] = "actions.toggle_hidden",
+  ["g\\"] = "actions.toggle_trash",
 }
 
 
@@ -61,6 +89,8 @@ vim.defer_fn(function()
   map('n', '<leader>fk', builtin.keymaps, {})
   map('n', '<leader>fh', builtin.highlights, {})
 end, 300)
+
+
 
 M.Custom_telescope_mapping = {
   i = {
@@ -148,5 +178,38 @@ map("n", '<leader>hv', gitsigns.select_hunk)
 map("n", ']h', gitsigns.next_hunk)
 map("n", '[h', gitsigns.prev_hunk)
 
+-- Trouble
+M.Custom_trouble_bindings = {
+  {
+    "<leader>xx",
+    "<cmd>Trouble diagnostics toggle<cr>",
+    desc = "Diagnostics (Trouble)",
+  },
+  {
+    "<leader>xX",
+    "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+    desc = "Buffer Diagnostics (Trouble)",
+  },
+  {
+    "<leader>cs",
+    "<cmd>Trouble symbols toggle focus=false<cr>",
+    desc = "Symbols (Trouble)",
+  },
+  {
+    "<leader>cl",
+    "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+    desc = "LSP Definitions / references / ... (Trouble)",
+  },
+  {
+    "<leader>xL",
+    "<cmd>Trouble loclist toggle<cr>",
+    desc = "Location List (Trouble)",
+  },
+  {
+    "<leader>xQ",
+    "<cmd>Trouble qflist toggle<cr>",
+    desc = "Quickfix List (Trouble)",
+  },
+}
 
 return M

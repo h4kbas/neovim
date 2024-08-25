@@ -4,6 +4,8 @@ return {
     local oil = require("oil")
     oil.setup({
       default_file_explorer = true,
+      use_default_keymaps = false,
+      keymaps = require("config.bindings").Custom_oil_mappings,
       skip_confirm_for_simple_edits = true,
       view_options = {
         show_hidden = true,
@@ -11,6 +13,5 @@ return {
       },
       watch_for_changes = false,
     })
-    vim.keymap.set("n", "-", oil.toggle_float, {})
   end,
 }

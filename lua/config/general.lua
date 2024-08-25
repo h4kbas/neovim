@@ -6,8 +6,13 @@ _G.g = vim.g
 o.shortmess:append("c")
 -- Set workdir to path
 local p = vim.fn.expand("%:p:h")
+-- Grep
 vim.cmd("cd /" .. string.gsub(p, "oil:///", ""))
-
+vim.cmd([[set grepprg=rg\ --vimgrep\ --smart-case\ --hidden]])
+vim.cmd([[set grepformat=%f:%l:%c:%m]])
+vim.cmd([[
+  cabbrev Grep copen \| silent! grep!
+]])
 -- Undo config
 o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.undofile = true
