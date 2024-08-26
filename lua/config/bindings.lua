@@ -281,6 +281,12 @@ M.Custom_dap_mappings = {
       require("dap").continue()
     end,
   },
+  {
+    "<leader>dc",
+    function()
+      require("dap").continue()
+    end,
+  }
 }
 
 
