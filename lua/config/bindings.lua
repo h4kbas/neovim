@@ -94,7 +94,6 @@ vim.defer_fn(function()
 end, 300)
 
 
-
 M.Custom_telescope_mapping = {
   i = {
     ["<c-d>"] = function(arg)
@@ -113,6 +112,14 @@ M.Custom_telescope_mapping = {
     ["<C-S-d>"] = function(arg)
       require("telescope.actions").delete_buffer(arg)
     end,
+  }
+}
+
+M.Custom_telescope_undo_mapping = {
+  { -- lazy style key map
+    "<leader>u",
+    "<cmd>Telescope undo<cr>",
+    desc = "undo history",
   }
 }
 
@@ -289,5 +296,41 @@ M.Custom_dap_mappings = {
   }
 }
 
+
+-- ## Harpoon ##
+
+vim.defer_fn(function()
+  local harpoon = require("harpoon")
+  map("n", "<leader>a", function()
+    local fname = vim.fn.expand("%")
+    local _, idx = harpoon:list():get_by_value(fname)
+    if idx == nil then
+      harpoon:list():add()
+      print("Added")
+    else
+      harpoon:list():remove_at(idx)
+      print("Removed")
+    end
+  end)
+  map("n", "<leader>e", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+  end)
+
+  map("n", "<leader>1", function()
+    harpoon:list():select(1)
+  end)
+  map("n", "<leader>2", function()
+    harpoon:list():select(2)
+  end)
+  map("n", "<leader>3", function()
+    harpoon:list():select(3)
+  end)
+  map("n", "<leader>4", function()
+    harpoon:list():select(4)
+  end)
+  map("n", "<leader>5", function()
+    harpoon:list():select(5)
+  end)
+end, 300)
 
 return M
