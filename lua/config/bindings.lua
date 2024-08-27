@@ -41,6 +41,9 @@ map({ "n", "v" }, "G", "Gzz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
+-- Quickfix
+map("n", "]q", "<cmd>cnext<cr>")
+map("n", "[q", "<cmd>cprevious<cr>")
 
 -- Treesitter
 M.Custom_treesitter_mapping = {
@@ -103,6 +106,7 @@ M.Custom_telescope_mapping = {
     ["<C-S-d>"] = function(arg)
       require("telescope.actions").delete_buffer(arg)
     end,
+    ["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
   },
   n = {
     ["<c-d>"] = function(arg)
