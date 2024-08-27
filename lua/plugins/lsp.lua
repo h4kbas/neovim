@@ -21,6 +21,10 @@ return {
         capabilities = cap,
       })
 
+      lsp.eslint.setup({
+        capabilities = cap,
+      })
+
       lsp.lua_ls.setup({
         capabilities = cap,
         settings = {
