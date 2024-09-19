@@ -32,7 +32,7 @@ return {
       keymaps = require("config.bindings").Custom_oil_mappings,
       skip_confirm_for_simple_edits = true,
       view_options = {
-        -- show_hidden = true,
+        show_hidden = true,
         Vnatural_order = true,
         is_hidden_file = function(name, _)
           -- dotfiles are always considered hidden
