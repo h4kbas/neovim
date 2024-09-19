@@ -16,10 +16,10 @@ return {
           python = { "black" },
           rust = { "rustfmt", lsp_format = "fallback" },
           -- Conform will run the first available formatter
-          javascript = { "prettierd", "prettier", stop_after_first = true },
-          typescript = { "prettierd", "prettier", stop_after_first = true },
+          javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+          typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
           typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-          tsx = { "prettierd", "prettier", stop_after_first = true },
+          tsx = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
           json = { "prettierd", "prettier", stop_after_first = true },
           jsonc = { "prettierd", "prettier", stop_after_first = true },
         },
