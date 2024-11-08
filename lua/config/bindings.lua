@@ -79,6 +79,18 @@ M.Custom_oil_mappings = {
   ["g\\"] = "actions.toggle_trash",
 }
 
+function vim.getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
+end
 
 -- ## Telescope ##
 vim.defer_fn(function()
@@ -91,6 +103,10 @@ vim.defer_fn(function()
   -- Search
   map('n', '<leader>ff', builtin.find_files, {})
   map('n', '<leader>fg', builtin.live_grep, {})
+  map('v', '<leader>fg', function()
+    local text = vim.getVisualSelection()
+    builtin.grep_string({ search = text })
+  end, {})
   -- System
   map('n', '<leader>fk', builtin.keymaps, {})
   map('n', '<leader>fh', builtin.highlights, {})
