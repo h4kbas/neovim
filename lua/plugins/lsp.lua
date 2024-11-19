@@ -17,7 +17,8 @@ return {
         callback = lsp_attach,
       })
 
-      lsp.tsserver.setup({
+
+      lsp.ts_ls.setup({
         capabilities = cap,
       })
 

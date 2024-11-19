@@ -77,7 +77,7 @@ return {
               if not ok then
                 return nil
               end
-              if source_name == "tsserver" then
+              if source_name == "ts_ls" then
                 return completion.detail
               elseif source_name == "gopls" then
                 return completion.detail
