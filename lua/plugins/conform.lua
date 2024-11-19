@@ -20,9 +20,17 @@ return {
           typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
           typescriptreact = { "prettierd", "prettier", stop_after_first = true },
           tsx = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
-          json = { "prettierd", "prettier", stop_after_first = true },
-          jsonc = { "prettierd", "prettier", stop_after_first = true },
+          json = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+          jsonc = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
         },
+        formatters = {
+          eslint_d = {
+            format_on_save = {
+              timeout_ms = 1000,
+              lsp_fallback = true,
+            },
+          }
+        }
       })
     end,
   },
