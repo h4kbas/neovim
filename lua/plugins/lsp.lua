@@ -20,6 +20,13 @@ return {
 
       lsp.ts_ls.setup({
         capabilities = cap,
+        on_attach = function(client, bufnr)
+          -- Change cwd to the project root detected by the LSP
+          if client.config.root_dir then
+            vim.cmd('cd ' .. client.config.root_dir)
+          end
+        end,
+        root_dir = require('lspconfig').util.root_pattern('package.json', 'tsconfig.json'),
       })
 
       -- lsp.eslint.setup({
