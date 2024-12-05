@@ -11,6 +11,7 @@ return {
     tag = "0.1.5",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
+      local initial_cwd = vim.fn.getcwd()
       local telescope = require("telescope")
       telescope.setup({
         extensions = {
@@ -20,7 +21,15 @@ return {
         },
         defaults = {
           mappings = require('config.bindings').Custom_telescope_mapping,
-        }
+        },
+        pickers = {
+          find_files = {
+            cwd = initial_cwd, -- Use the initial directory where Neovim was opened
+          },
+          live_grep = {
+            cwd = initial_cwd, -- Use the same initial directory
+          },
+        },
       })
       -- Extensions
       require("telescope").load_extension("ui-select")
