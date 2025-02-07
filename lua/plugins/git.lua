@@ -61,5 +61,15 @@ return {
         },
       })
     end
-  }
+  },
+  {
+    'akinsho/git-conflict.nvim',
+    version = "*",
+    config = function()
+      local gitconflict = require("git-conflict")
+      gitconflict.setup({
+        default_mappings = false
+      })
+    end
+  },
 }

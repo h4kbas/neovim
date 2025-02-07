@@ -1,6 +1,6 @@
 local M = {}
 vim.g.mapleader = " "
-
+vim.cmd("imap jj <ESC>")
 -- ## Vim ##
 -- Terminal
 map("n", "<leader>tt", "<cmd>tabnew | te<CR>", { noremap = true })
@@ -363,5 +363,14 @@ map("n", "<leader>dd", function()
     vim.cmd("DiffviewOpen")
   end
 end)
+
+-- ## Git Conflict ##
+map('n', 'co', ':GitConflictChooseOurs<CR>')
+map('n', 'ct', ':GitConflictChooseTheirs<CR>')
+map('n', 'cb', ':GitConflictChooseBoth<CR>')
+map('n', 'c0', ':GitConflictChooseNone<CR>')
+map('n', '[x', ':GitConflictPrevConflict<CR>')
+map('n', ']x', ':GitConflictNextConflict<CR>')
+map('n', 'C-x', ':GitConflictListQf<CR>')
 
 return M
