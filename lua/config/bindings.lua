@@ -18,7 +18,8 @@ map("n", "<leader>q", "<cmd>mksession! save.vim<CR>:wall|qa!<CR>")
 -- Buffers
 map('n', '<leader>bd', '<cmd>bd!<CR>')
 map('n', '<leader>bw', '<cmd>bw<CR>')
-map('n', '<leader>bn', '<cmd>enew<CR>')
+map('n', '<leader>n', '<cmd>bp<CR>')
+map('n', '<leader>m', '<cmd>bn<CR>')
 -- Windows
 map('n', '<c-k>', '<cmd>wincmd k<CR>')
 map('n', '<c-j>', '<cmd>wincmd j<CR>')
