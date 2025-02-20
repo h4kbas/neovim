@@ -13,9 +13,12 @@ map(
   "<cmd>w|lua vim.defer_fn( function()vim.cmd('echom \"\"') end, 0)<CR>",
   { noremap = false }
 )
+-- Neogit
+map('n', '<leader>g', '<cmd>Neogit<CR>')
 -- Session
 map("n", "<leader>q", "<cmd>mksession! save.vim<CR>:wall|qa!<CR>")
 -- Buffers
+map('n', '<ESC><ESC>', '<cmd>bd<CR>')
 map('n', '<leader>bd', '<cmd>bd!<CR>')
 map('n', '<leader>bw', '<cmd>bw<CR>')
 map('n', '<leader>n', '<cmd>bp<CR>')
