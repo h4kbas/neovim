@@ -180,7 +180,7 @@ end
 
 function M.Custom_lsp_actions(opts)
   local builtin = require('telescope.builtin')
-  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+  map('n', 'K', vim.lsp.buf.hover, opts)
   map('n', 'gd', builtin.lsp_definitions, opts)
   map('n', 'gi', builtin.lsp_implementations, opts)
   map('n', 'gr', builtin.lsp_references, opts)
