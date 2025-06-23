@@ -8,10 +8,10 @@ return {
         handler_opts = {
           border = 'rounded',
         },
-        hint_enable = false, -- disable virtual text hint
-        floating_window = true,
-        floating_window_above_cur_line = true,
-        fix_pos = true,
+        -- hint_enable = false, -- disable virtual text hint
+        -- floating_window = true,
+        -- floating_window_above_cur_line = true,
+        -- fix_pos = true,
       })
     end
   }

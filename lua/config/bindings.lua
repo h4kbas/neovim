@@ -49,6 +49,12 @@ map("n", "N", "Nzzzv")
 map("n", "]q", "<cmd>cnext<cr>")
 map("n", "[q", "<cmd>cprevious<cr>")
 
+-- -- LSP Signature
+-- map.set("n", "<leader>ls", function()
+--   require("lsp_signature").on_attach()
+-- end, { desc = "Attach LSP Signature" })
+
+
 -- Treesitter
 M.Custom_treesitter_mapping = {
   init_selection = "<C-e>",
@@ -323,39 +329,39 @@ M.Custom_dap_mappings = {
 
 -- ## Harpoon ##
 
-vim.defer_fn(function()
-  local harpoon = require("harpoon")
-  map("n", "<leader>a", function()
-    local fname = vim.fn.expand("%")
-    local _, idx = harpoon:list():get_by_value(fname)
-    if idx == nil then
-      harpoon:list():add()
-      print("Added")
-    else
-      harpoon:list():remove_at(idx)
-      print("Removed")
-    end
-  end)
-  map("n", "<leader>e", function()
-    harpoon.ui:toggle_quick_menu(harpoon:list())
-  end)
-
-  map("n", "1", function()
-    harpoon:list():select(1)
-  end)
-  map("n", "2", function()
-    harpoon:list():select(2)
-  end)
-  map("n", "3", function()
-    harpoon:list():select(3)
-  end)
-  map("n", "4", function()
-    harpoon:list():select(4)
-  end)
-  map("n", "5", function()
-    harpoon:list():select(5)
-  end)
-end, 300)
+-- vim.defer_fn(function()
+--   local harpoon = require("harpoon")
+--   map("n", "<leader>a", function()
+--     local fname = vim.fn.expand("%")
+--     local _, idx = harpoon:list():get_by_value(fname)
+--     if idx == nil then
+--       harpoon:list():add()
+--       print("Added")
+--     else
+--       harpoon:list():remove_at(idx)
+--       print("Removed")
+--     end
+--   end)
+--   map("n", "<leader>e", function()
+--     harpoon.ui:toggle_quick_menu(harpoon:list())
+--   end)
+--
+--   map("n", "1", function()
+--     harpoon:list():select(1)
+--   end)
+--   map("n", "2", function()
+--     harpoon:list():select(2)
+--   end)
+--   map("n", "3", function()
+--     harpoon:list():select(3)
+--   end)
+--   map("n", "4", function()
+--     harpoon:list():select(4)
+--   end)
+--   map("n", "5", function()
+--     harpoon:list():select(5)
+--   end)
+-- end, 300)
 
 -- ## Diffview ##
 map("n", "<leader>dd", function()
