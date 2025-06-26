@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.cmd("imap jj <ESC>")
 -- ## Vim ##
 -- Terminal
-map("n", "<leader>tt", "<cmd>tabnew | te<CR>", { noremap = true })
+map("n", "<leader>T", "<cmd>tabnew | te<CR>", { noremap = true })
 map("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true })
 -- Save
 map("n", "S", "s", { noremap = true })
