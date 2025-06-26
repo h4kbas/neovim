@@ -45,12 +45,12 @@ return {
       },
     },
     keys = require("config.bindings").Custom_telescope_undo_mapping,
-    opts = {
-      extensions = {
-        undo = {
-        },
-      },
-    },
+    -- opts = {
+    --   extensions = {
+    --     undo = {
+    --     },
+    --   },
+    -- },
     config = function(_, opts)
       require("telescope").setup(opts)
       require("telescope").load_extension("undo")

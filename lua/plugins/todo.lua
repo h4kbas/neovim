@@ -1,6 +1,6 @@
 return {
   {
-    "SyedAsimShah1/quick-todo.nvim",
+    "onurcancamci/quick-todo.nvim",
     config = function()
       require("quick-todo").setup({
         keys = {
