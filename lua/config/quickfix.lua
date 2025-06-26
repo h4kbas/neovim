@@ -41,6 +41,14 @@ vim.api.nvim_create_user_command("QFMark", function()
   vim.fn.setqflist({ item }, "a")
 end, {})
 
+
+vim.keymap.set(
+  "n",
+  "<leader>a",
+  ":QFMark<CR>",
+  { desc = "Mark line in quickfix list" }
+)
+
 local function delete_qf_item_under_cursor()
   local cursor = vim.fn.line(".") -- line number in qf window
   local qflist = vim.fn.getqflist()
@@ -58,12 +66,29 @@ vim.api.nvim_create_autocmd("FileType", {
       delete_qf_item_under_cursor,
       { buffer = true, desc = "Delete qf item" }
     )
+
+    vim.keymap.set("x", "d", function()
+      if vim.bo.buftype ~= "quickfix" then
+        print("Not in quickfix window")
+        return
+      end
+
+      local qf_list = vim.fn.getqflist({ all = 1 }).items
+      local start_line = vim.fn.line("v")
+      local end_line = vim.fn.line(".")
+      if start_line > end_line then
+        start_line, end_line = end_line, start_line
+      end
+
+      local new_qf = {}
+      for i, item in ipairs(qf_list) do
+        if i < start_line or i > end_line then
+          table.insert(new_qf, item)
+        end
+      end
+
+      vim.fn.setqflist({}, "r", { items = new_qf })
+      vim.cmd("copen") -- Refresh window visually
+    end, { buffer = true, desc = "Delete selected QF items" })
   end,
 })
-
-vim.keymap.set(
-  "n",
-  "<leader>a",
-  ":QFMark<CR>",
-  { desc = "Mark line in quickfix list" }
-)

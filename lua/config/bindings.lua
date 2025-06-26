@@ -13,6 +13,102 @@ map(
   "<cmd>w|lua vim.defer_fn( function()vim.cmd('echom \"\"') end, 0)<CR>",
   { noremap = false }
 )
+
+local function delete_background_buffers()
+  -- Get all buffers
+  local all_buffers = vim.api.nvim_list_bufs()
+
+  -- Get all windows
+  local all_windows = vim.api.nvim_list_wins()
+
+  -- Create a set of displayed buffers
+  local displayed_buffers = {}
+  for _, win in ipairs(all_windows) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    displayed_buffers[buf] = true
+  end
+
+  -- Collect non-displayed buffers
+  local background_buffers = {}
+  for _, buf in ipairs(all_buffers) do
+    if not displayed_buffers[buf] then
+      table.insert(background_buffers, buf)
+    end
+  end
+
+  -- Close non-displayed buffers
+  for _, buf in ipairs(background_buffers) do
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
+end
+
+local function delete_all_buffers()
+  local bufs = vim.api.nvim_list_bufs()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, i in ipairs(bufs) do
+    if i ~= current_buf then
+      vim.api.nvim_buf_delete(i, {})
+    end
+  end
+end
+
+local function save_existing_files()
+  -- Get all listed buffers (active in the buffer list)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    -- Check if the buffer has a name (i.e., is associated with a file)
+    local buf_name = vim.api.nvim_buf_get_name(buf)
+    -- Check that the file exists on disk and is writable
+    if buf_name ~= "" and vim.fn.filereadable(buf_name) == 1 then
+      -- Check that the buffer is not a terminal, scratch, or special buffer
+      local buf_ft = vim.bo[buf].filetype
+      if
+          buf_ft ~= "terminal"
+          and buf_ft ~= "netrw"
+          and buf_ft ~= "scratch"
+          and buf_ft ~= ""
+          and vim.bo[buf].modifiable
+          and vim.bo[buf].buflisted
+          and vim.bo[buf].readonly == false
+      then
+        -- Save the buffer
+        vim.api.nvim_buf_call(buf, function()
+          vim.cmd("write")
+        end)
+      end
+    end
+  end
+  print("Saved all open buffers with existing files.")
+end
+
+local function save_and_delete_all()
+  save_existing_files()
+  delete_all_buffers()
+end
+
+vim.api.nvim_create_user_command("SaveAll", save_existing_files, {})
+vim.api.nvim_create_user_command("SaveDeleteAll", save_and_delete_all, {})
+vim.api.nvim_create_user_command(
+  "DeleteBackgroundBuffers",
+  delete_background_buffers,
+  {}
+)
+
+-- vim.keymap.set("n", "<leader>S", "<cmd>mksession! save.vim<CR>:wall|qa!<CR>")
+map("n", "<leader>S", function()
+  local git_dir = vim.fn.glob(".git")
+  if git_dir ~= "" then
+    -- Create a session file called `save.vim`
+    save_existing_files()
+    delete_background_buffers()
+    vim.cmd("mksession! save.vim")
+    vim.cmd([[qa!]])
+  else
+    save_existing_files()
+    delete_background_buffers()
+    vim.cmd([[qa!]])
+  end
+end)
+
 -- Neogit
 map('n', '<leader>g', '<cmd>Neogit<CR>')
 -- Session
@@ -50,7 +146,7 @@ map("n", "]q", "<cmd>cnext<cr>")
 map("n", "[q", "<cmd>cprevious<cr>")
 
 -- -- LSP Signature
--- map.set("n", "<leader>ls", function()
+-- map("n", "<leader>ls", function()
 --   require("lsp_signature").on_attach()
 -- end, { desc = "Attach LSP Signature" })
 
