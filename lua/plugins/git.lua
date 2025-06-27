@@ -1,10 +1,9 @@
 return {
   {
     "NeogitOrg/neogit",
+    commit = '43fa47fb61773b0d90a78ebc2521ea8faaeebd86',
     dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-
+      "nvim-lua/plenary.nvim",         -- required
       -- Only one of these is needed, not both.
       "nvim-telescope/telescope.nvim", -- optional
       "ibhagwan/fzf-lua",              -- optional
@@ -12,9 +11,6 @@ return {
     config = function()
       local neogit = require("neogit")
       neogit.setup({
-        integrations = {
-          diffview = true
-        }
       })
     end
   },
@@ -47,21 +43,21 @@ return {
       })
     end
   },
-  {
-    "sindrets/diffview.nvim",
-    config = function()
-      local diffview = require("diffview")
-      diffview.setup({
-        hooks = {
-          view_opened = function(view)
-            -- Customize the behavior when a view is opened
-            vim.cmd("set diffopt+=iwhite") -- Ignore all whitespace changes
-            vim.cmd("set diffopt-=filler") -- Disable filler lines for deleted lines
-          end,
-        },
-      })
-    end
-  },
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   config = function()
+  --     local diffview = require("diffview")
+  --     diffview.setup({
+  --       hooks = {
+  --         view_opened = function(view)
+  --           -- Customize the behavior when a view is opened
+  --           vim.cmd("set diffopt+=iwhite") -- Ignore all whitespace changes
+  --           vim.cmd("set diffopt-=filler") -- Disable filler lines for deleted lines
+  --         end,
+  --       },
+  --     })
+  --   end
+  -- },
   {
     'akinsho/git-conflict.nvim',
     version = "*",
