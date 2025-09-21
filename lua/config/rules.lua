@@ -74,3 +74,61 @@ vim.api.nvim_create_user_command(
   delete_background_buffers,
   {}
 )
+local function aug(name)
+  return vim.api.nvim_create_augroup(name, { clear = true })
+end
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = aug("AutoReadChecktime"),
+  pattern = "*",
+  command = "checktime",
+})
+
+local uv = vim.uv or vim.loop
+vim.o.autoread = true
+
+local watchers = {}
+
+local function stop_watch(buf)
+  local w = watchers[buf]
+  if w then
+    pcall(w.stop, w); pcall(w.close, w); watchers[buf] = nil
+  end
+end
+
+local function start_watch(buf)
+  stop_watch(buf)
+  if not vim.api.nvim_buf_is_valid(buf) then return end
+  local name = vim.api.nvim_buf_get_name(buf)
+  if name == "" or vim.fn.filereadable(name) == 0 then return end
+
+  local w = uv.new_fs_event()
+  w:start(name, {}, function(err, _fname, _status)
+    if err then return end
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(buf) then return stop_watch(buf) end
+      if not vim.bo[buf].modified then
+        pcall(vim.cmd, "silent! checktime " .. buf)
+        local short = vim.fn.fnamemodify(name, ":t")
+      else
+      end
+    end)
+  end)
+
+  watchers[buf] = w
+end
+
+-- Start/stop watchers as buffers come and go
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufFilePost" }, {
+  group = vim.api.nvim_create_augroup("FSWatchStart", { clear = true }),
+  callback = function(args) start_watch(args.buf) end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = vim.api.nvim_create_augroup("FSWatchRefresh", { clear = true }),
+  callback = function(args) start_watch(args.buf) end, -- refresh after save/rename
+})
+
+vim.api.nvim_create_autocmd({ "BufWipeout", "BufUnload", "BufDelete" }, {
+  group = vim.api.nvim_create_augroup("FSWatchStop", { clear = true }),
+  callback = function(args) stop_watch(args.buf) end,
+})
