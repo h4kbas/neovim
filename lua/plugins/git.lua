@@ -17,22 +17,24 @@ return {
         current_line_blame = true,
         current_line_blame_opts = {
           delay = 500,
+          virt_text_pos = 'eol', -- Blame appears at the end of the line
         },
+        -- Changing letters to a solid bar
         signs = {
-          add          = { text = 'U', }, -- Untracked file
-          change       = { text = 'M', }, -- Modified file
-          delete       = { text = 'D', }, -- Deleted file
-          topdelete    = { text = 'D', }, -- Top deleted line
-          changedelete = { text = 'M', }, -- Changed and deleted line
-          untracked    = { text = 'U', }, -- Untracked file
+          add          = { text = "▌" },
+          change       = { text = "▌" },
+          delete       = { text = "▌" },
+          topdelete    = { text = "▌" },
+          changedelete = { text = "▌" },
+          untracked    = { text = "▌" },
         },
         signs_staged = {
-          add          = { text = 'S', }, -- Staged add
-          change       = { text = 'M', }, -- Staged modified
-          delete       = { text = 'D', }, -- Staged delete
-          topdelete    = { text = 'D', }, -- Staged top delete
-          changedelete = { text = 'M', }, -- Staged change and delete
-          untracked    = { text = 'U', }, -- Staged untracked
+          add          = { text = "▌" },
+          change       = { text = "▌" },
+          delete       = { text = "▌" },
+          topdelete    = { text = "▌" },
+          changedelete = { text = "▌" },
+          untracked    = { text = "▌" },
         },
       })
     end

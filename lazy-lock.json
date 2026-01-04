@@ -1,6 +1,7 @@
 {
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "bd5a7d6db125d4654b50eeae9f5217f24bb22fd3" },
+  "colorly.nvim": { "branch": "main", "commit": "732fb31036fcfaa2ef6203f1bd5d57a747b51d9f" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
   "copilot.lua": { "branch": "master", "commit": "8e52d47e4033fa0659c25deb39a39b61c86adb45" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
@@ -13,7 +14,7 @@
   "lualine.nvim": { "branch": "master", "commit": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955" },
   "marks.nvim": { "branch": "master", "commit": "f353e8c08c50f39e99a9ed474172df7eddd89b72" },
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
-  "neogit": { "branch": "master", "commit": "6617978288d58eb121754b5dd890e893d9a7e8d6" },
+  "neogit": { "branch": "master", "commit": "d8bf9102692250193b855acd9025a826f1af2729" },
   "nvim-autopairs": { "branch": "master", "commit": "23320e75953ac82e559c610bec5a90d9c6dfa743" },
   "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "51cf7c995ed1eb6642aecf19067ee634fa1b6ba2" },

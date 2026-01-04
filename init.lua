@@ -34,7 +34,7 @@ if vim.g.neovide then
 end
 
 
-require("config.colors")
+-- require("config.colors") -- This has been replaced by colorly deprecated
 require("config.general")
 require("lazy-init")
 require("config.bindings")
@@ -42,3 +42,5 @@ require("config.errors")
 require("config.folding")
 require("config.quickfix")
 require("config.rules")
+
+vim.cmd('colorscheme aubergine')
