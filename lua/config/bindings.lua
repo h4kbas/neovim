@@ -460,7 +460,7 @@ M.Custom_dap_mappings = {
 -- end, 300)
 
 -- ## Diffview ##
-map("n", "<leader>dd", function()
+map("n", "<leader>d", function()
   local lib = require("diffview.lib")
   local view = lib.get_current_view()
   if view then
