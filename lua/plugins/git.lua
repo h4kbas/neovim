@@ -40,22 +40,6 @@ return {
     end
   },
   {
-    "sindrets/diffview.nvim",
-    config = function()
-      local diffview = require("diffview")
-      diffview.setup({
-        hooks = {
-          view_opened = function(view)
-            vim.opt.fillchars:append { diff = " " }
-            -- Customize the behavior when a view is opened
-            -- vim.cmd("set diffopt+=iwhite") -- Ignore all whitespace changes
-            -- vim.cmd("set diffopt-=filler") -- Disable filler lines for deleted lines
-          end,
-        },
-      })
-    end
-  },
-  {
     'akinsho/git-conflict.nvim',
     version = "*",
     config = function()

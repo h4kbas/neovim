@@ -5,7 +5,6 @@ return {
       { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
-      local lsp = require("lspconfig")
       local cap = require("cmp_nvim_lsp").default_capabilities()
       local lsp_attach = function(args)
         local opts = { buffer = args.buf }
@@ -18,7 +17,7 @@ return {
       })
 
 
-      lsp.ts_ls.setup({
+      vim.lsp.config("ts_ls", {
         capabilities = cap,
         on_attach = function(client, bufnr)
           -- Change cwd to the project root detected by the LSP
@@ -26,14 +25,16 @@ return {
             vim.cmd('cd ' .. client.config.root_dir)
           end
         end,
-        root_dir = require('lspconfig').util.root_pattern('package.json', 'tsconfig.json'),
+        root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json'),
       })
+      vim.lsp.enable("ts_ls")
 
-      -- lsp.eslint.setup({
+      -- vim.lsp.config("eslint", {
       --   capabilities = cap,
       -- })
+      -- vim.lsp.enable("eslint")
 
-      lsp.lua_ls.setup({
+      vim.lsp.config("lua_ls", {
         capabilities = cap,
         settings = {
           Lua = {
@@ -43,23 +44,27 @@ return {
           }
         }
       })
-      lsp.sqlls.setup({
+      vim.lsp.enable("lua_ls")
+
+      vim.lsp.config("sqlls", {
         capabilities = cap,
       })
+      vim.lsp.enable("sqlls")
 
-      lsp.jsonls.setup({
+      vim.lsp.config("jsonls", {
         capabilities = cap,
         filetypes = { 'json', 'jsonc' },
         settings = {}
       })
+      vim.lsp.enable("jsonls")
 
-      lsp.yamlls.setup({
+      vim.lsp.config("yamlls", {
         capabilities = cap,
         settings = {}
       })
+      vim.lsp.enable("yamlls")
 
-
-      lsp.rust_analyzer.setup {
+      vim.lsp.config("rust_analyzer", {
         settings = {
           ['rust-analyzer'] = {
             diagnostics = {
@@ -67,7 +72,8 @@ return {
             }
           }
         }
-      }
+      })
+      vim.lsp.enable("rust_analyzer")
     end
   },
 }

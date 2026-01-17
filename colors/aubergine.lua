@@ -82,12 +82,14 @@ local groups_override = function(C)
     LualineReplaceA     = { bg = C.ModeReplace, fg = C.Bg1, bold = true },
     IndentBlanklineChar = { fg = "#FFFFFF", bg = "NONE" },
     BlanklineWhitespace = { fg = "#FFFFFF", bg = "NONE" },
+    Folded              = { bg = C.FoldedBg, fg = C.Bg1 },
   }
 end
 
 local function modified_colors(C)
   return {
     SearchBg = color_utils.darken(C.Iota, 0.30, C.Bg1),
+    FoldedBg = color_utils.darken(C.TextDim1, 0.90, "#FFFFFF"),
   }
 end
 
