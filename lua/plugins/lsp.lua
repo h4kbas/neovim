@@ -6,9 +6,22 @@ return {
     },
     config = function()
       local cap = require("cmp_nvim_lsp").default_capabilities()
+      local lspconfig_util = require('lspconfig.util')
+      
       local lsp_attach = function(args)
-        local opts = { buffer = args.buf }
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then
+          return
+        end
+        
+        local opts = { buffer = bufnr }
         require("config.bindings").Custom_lsp_actions(opts)
+        
+        -- Change cwd to the project root detected by the LSP
+        if client.config.root_dir then
+          vim.cmd('cd ' .. client.config.root_dir)
+        end
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -16,16 +29,17 @@ return {
         callback = lsp_attach,
       })
 
-
       vim.lsp.config("ts_ls", {
         capabilities = cap,
-        on_attach = function(client, bufnr)
-          -- Change cwd to the project root detected by the LSP
-          if client.config.root_dir then
-            vim.cmd('cd ' .. client.config.root_dir)
+        root_dir = function(bufnr, on_dir)
+          local files = vim.fs.find({ 'package.json', 'tsconfig.json' }, {
+            path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ':p:h'),
+            upward = true,
+          })
+          if #files > 0 then
+            on_dir(vim.fn.fnamemodify(files[1], ':p:h'))
           end
         end,
-        root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json'),
       })
       vim.lsp.enable("ts_ls")
 
@@ -65,6 +79,7 @@ return {
       vim.lsp.enable("yamlls")
 
       vim.lsp.config("rust_analyzer", {
+        capabilities = cap,
         settings = {
           ['rust-analyzer'] = {
             diagnostics = {

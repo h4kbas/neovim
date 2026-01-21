@@ -38,6 +38,7 @@ end
 require("config.general")
 require("lazy-init")
 require("config.bindings")
+require("config.private_bindings")
 require("config.errors")
 require("config.folding")
 require("config.quickfix")
