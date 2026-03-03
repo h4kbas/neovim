@@ -44,4 +44,24 @@ require("config.folding")
 require("config.quickfix")
 require("config.rules")
 
+vim.lsp.enable({
+  "sqls",
+  "lua_ls",
+  -- "clangd",
+  "html",
+  -- "gopls",
+  "bashls",
+  "jsonls",
+  "yamlls",
+  "cssls",
+  "rust_analyzer",
+  "vtsls",
+  -- "ts_ls",
+  -- "vue_ls",
+  -- "pyright",
+  "copilot",
+  -- "gdscript",
+  -- "gdshader_lsp",
+})
+
 vim.cmd('colorscheme aubergine')

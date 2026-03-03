@@ -4,33 +4,41 @@ return {
     opts = {},
     config = function()
       local conform = require("conform")
+      local eslint_config_files = {
+        "eslint.config.js",
+        "eslint.config.mjs",
+        ".eslintrc",
+        ".eslintrc.js",
+        ".eslintrc.cjs",
+        ".eslintrc.json",
+      }
+      local function has_eslint_config(bufnr)
+        local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":p:h")
+        local found = vim.fs.find(eslint_config_files, { path = dir, upward = true })
+        return #found > 0
+      end
+      local function js_ts_formatters(bufnr)
+        if has_eslint_config(bufnr) then
+          return { "eslint_d" }
+        end
+        return { "prettierd", "prettier", stop_after_first = true }
+      end
       conform.setup({
         format_on_save = {
-          -- These options will be passed to conform.format()
           timeout_ms = 2000,
           lsp_format = "fallback",
         },
         formatters_by_ft = {
           lua = { "stylua" },
-
           python = { "black" },
           rust = { "rustfmt", lsp_format = "fallback" },
-          -- Conform will run the first available formatter
-          javascript = { "prettierd", "prettier", stop_after_first = true },
-          typescript = { "prettierd", "prettier", stop_after_first = true },
-          typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-          tsx = { "prettierd", "prettier", stop_after_first = true },
+          javascript = js_ts_formatters,
+          typescript = js_ts_formatters,
+          typescriptreact = js_ts_formatters,
+          tsx = js_ts_formatters,
           json = { "prettierd", "prettier", stop_after_first = true },
           jsonc = { "prettierd", "prettier", stop_after_first = true },
         },
-        formatters = {
-          eslint_d = {
-            format_on_save = {
-              timeout_ms = 1000,
-              lsp_fallback = true,
-            },
-          }
-        }
       })
     end,
   },

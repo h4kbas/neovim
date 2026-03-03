@@ -280,20 +280,26 @@ function M.Custom_cmp_actions(cmp_select)
   }
 end
 
-function M.Custom_lsp_actions(opts)
-  local builtin = require('telescope.builtin')
-  map('n', 'K', vim.lsp.buf.hover, opts)
-  map('n', 'gd', builtin.lsp_definitions, opts)
-  map('n', 'gi', builtin.lsp_implementations, opts)
-  map('n', 'gr', builtin.lsp_references, opts)
-  map('n', 'go', builtin.lsp_type_definitions, opts)
-  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-  map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-  map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  map("n", "]g", vim.diagnostic.goto_next)
-  map("n", "[g", vim.diagnostic.goto_prev)
-  map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-end
+-- function M.Custom_lsp_actions(opts)
+local builtin = require('telescope.builtin')
+map('n', 'K', vim.lsp.buf.hover)
+map('n', 'gd', builtin.lsp_definitions)
+map('n', 'gi', builtin.lsp_implementations)
+map('n', 'gr', builtin.lsp_references)
+map('n', 'go', builtin.lsp_type_definitions)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+map("n", "]g", vim.diagnostic.goto_next)
+map("n", "[g", vim.diagnostic.goto_prev)
+map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grt")
+vim.keymap.del({ "v", "n" }, "gra")
+vim.keymap.del({ "n" }, "gri")
+vim.keymap.del("n", "grr")
+-- end
 
 -- Git
 vim.defer_fn(function()
