@@ -11,6 +11,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+if vim.hl then
+  vim.highlight = vim.hl
+end
+if vim.lsp.get_clients then
+  vim.lsp.buf_get_clients = function(bufnr)
+    if bufnr == nil or bufnr == 0 then
+      bufnr = vim.api.nvim_get_current_buf()
+    end
+    return vim.lsp.get_clients({ bufnr = bufnr })
+  end
+end
+
 if vim.g.neovide then
   vim.o.guifont = "Hack Nerd Font:h12"
   vim.g.neovide_scale_factor = 1.0
